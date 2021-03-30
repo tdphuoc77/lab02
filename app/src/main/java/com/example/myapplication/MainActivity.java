@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
                     long price=Long.parseLong(txtPrice.getText().subSequence(0,txtPrice.getText().length()-6).toString());
                     if(amount>0){
                         amount= amount-1;
-                        long priceSum= price*amount;
+                        long priceSum= price*amount*1000;
                         txtAmount.setText(amount+"");
-                        txtProvisional.setText(priceSum+"");
-                        txtSum.setText(priceSum+"");
+                        txtProvisional.setText(priceSum+" đ");
+                        txtSum.setText(priceSum+" đ");
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     long price=Long.parseLong(txtPrice.getText().subSequence(0,txtPrice.getText().length()-6).toString());
                     amount= amount+1;
                     txtAmount.setText(amount+"");
-                    long priceSum=price*amount;
-                    txtProvisional.setText(priceSum+"");
-                    txtSum.setText(priceSum+"");
+                    long priceSum=price*amount*1000;
+                    txtProvisional.setText(priceSum+" đ");
+                    txtSum.setText(priceSum+" đ");
                 }catch (Exception e){
                     Toast.makeText(MainActivity.this, "Password length must be a digit", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
