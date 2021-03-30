@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,15 +36,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void sumPrice(){
-        Button btnMinus;
-        Button btnAdd;
+        ImageButton btnMinus;
+        ImageButton btnAdd;
         TextView txtAmount;
         TextView txtProvisional;
         TextView txtSum;
         TextView txtPrice;
 
         setContentView(R.layout.layout3);
+
          btnMinus =findViewById(R.id.btnminus);
+
          btnAdd=findViewById(R.id.btnadd);
          txtAmount=findViewById(R.id.amount);
          txtProvisional=findViewById(R.id.provisional);
@@ -56,18 +59,20 @@ public class MainActivity extends AppCompatActivity {
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int amount;
                 try {
-                    int amount=Integer.parseInt(txtAmount.toString());
-                    long price=Long.parseLong(txtPrice.toString());
+                    amount=Integer.parseInt(txtAmount.getText().toString());
+                    long price=Long.parseLong(txtPrice.getText().subSequence(0,txtPrice.getText().length()-6).toString());
                     if(amount>0){
                         amount= amount-1;
                         long priceSum= price*amount;
-                        txtAmount.setText(amount);
+                        txtAmount.setText(amount+"");
                         txtProvisional.setText(priceSum+"");
                         txtSum.setText(priceSum+"");
                     }
                 }catch (Exception e){
-                    Toast.makeText(MainActivity.this, "Password length must be a digit", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+
                 }
 
             }
@@ -76,16 +81,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    int amount=Integer.parseInt(txtAmount.toString());
-                    long price=Long.parseLong(txtPrice.toString());
+                    int amount = Integer.parseInt(txtAmount.getText().toString());
+                    long price=Long.parseLong(txtPrice.getText().subSequence(0,txtPrice.getText().length()-6).toString());
                     amount= amount+1;
-                    txtAmount.setText(amount);
+                    txtAmount.setText(amount+"");
                     long priceSum=price*amount;
                     txtProvisional.setText(priceSum+"");
                     txtSum.setText(priceSum+"");
                 }catch (Exception e){
                     Toast.makeText(MainActivity.this, "Password length must be a digit", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
+
 
 
             }
